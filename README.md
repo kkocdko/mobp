@@ -16,7 +16,7 @@
 
 ### Why
 
-On Mac OS, Microsoft Office keeps running in the background. But on Windows, clicking the close button will cause the Office process to exit.
+On Mac OS, Microsoft Office keeps running in the background. But on Windows, clicking the close button will cause the process to exit.
 
 If you have many plugins installed, or you are using a PC with a slow hard drive, starting and closing Office frequently will waste a lot of time.
 
@@ -31,10 +31,10 @@ This program will help you solve this problem.
 
 3. Run `mobp.exe`.
 
-### Postscript
+### Note
 
 * Run again to stop background processes.
 
-* Not recommended for use with multi-tab plugins.
+* Deprecated for use with multi-tag plugins.
 
 * Test on Windows 10 + Office 2016. Whether this program supports older versions depends on your luck.
