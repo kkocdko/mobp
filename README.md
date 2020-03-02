@@ -31,4 +31,6 @@ This program will help you solve this problem.
 
 3. Run `mobp.exe`.
 
-* If you want to stop, kill the office processes in task manager.
+* If you want to stop, you can run `mobp.exe` again.
+
+* Not recommended for use with multi-tab plugins.
