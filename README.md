@@ -10,7 +10,7 @@
 </p>
 </div>
 
-> Windows Only.
+> Windows only.
 >
 > Only three commonly used components (Word, Excel and PowerPoint) are currently supported.
 
@@ -31,6 +31,10 @@ This program will help you solve this problem.
 
 3. Run `mobp.exe`.
 
-* If you want to stop, you can run `mobp.exe` again.
+### Postscript
+
+* Run again to stop background processes.
 
 * Not recommended for use with multi-tab plugins.
+
+* Test on Windows 10 + Office 2016. Whether this program supports older versions depends on your luck.

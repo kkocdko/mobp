@@ -1,13 +1,13 @@
 #include <windows.h>
 #include <stdio.h>
 
-BOOL HideWindowByTitle(const char *window_title)
+BOOL HideWindowByTitle(const char *title)
 {
-    HWND hwnd = FindWindow(NULL, window_title);
+    HWND hwnd = FindWindow(NULL, title);
     if (hwnd)
     {
-        SetWindowPos(hwnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSENDCHANGING);
-        SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE);
+        SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
+        SetWindowPos(hwnd, HWND_BOTTOM, -1000, -1000, 0, 0, SWP_NOSENDCHANGING);
         return TRUE;
     }
     else
@@ -16,12 +16,12 @@ BOOL HideWindowByTitle(const char *window_title)
     }
 }
 
-BOOL CloseWindowByTitle(const char *window_title)
+BOOL CloseWindowByTitle(const char *title)
 {
-    HWND hwnd = FindWindow(NULL, window_title);
+    HWND hwnd = FindWindow(NULL, title);
     if (hwnd)
     {
-        SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
+        PostMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
         return TRUE;
     }
     else
@@ -86,19 +86,21 @@ int main(int argc, char *argv[])
         ShellExecute(
             NULL,
             NULL,
-            "cmd.exe",
+            "cmd",
             "/c "
-            "cd.>\"%temp%\\_mobp.docx\""
+            "cd /d %temp%"
             "&"
-            "cd.>\"%temp%\\_mobp.csv\""
+            "cd.>_mobp.docx"
             "&"
-            "cd.>\"%temp%\\_mobp.pptx\""
+            "cd.>_mobp.csv"
             "&"
-            "start \"\" \"%temp%\\_mobp.docx\""
+            "cd.>_mobp.pptx"
             "&"
-            "start \"\" \"%temp%\\_mobp.csv\""
+            "start \"\" _mobp.docx"
             "&"
-            "start \"\" \"%temp%\\_mobp.pptx\"",
+            "start \"\" _mobp.csv"
+            "&"
+            "start \"\" _mobp.pptx",
             NULL,
             SW_HIDE);
         BOOL word_hidden = FALSE;
@@ -120,6 +122,7 @@ int main(int argc, char *argv[])
             }
             Sleep(5);
         }
+        // Refresh explorer?
         printf("mobp is started");
     }
     if (argc == 1)
