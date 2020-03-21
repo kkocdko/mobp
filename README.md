@@ -10,7 +10,7 @@
 </p>
 </div>
 
-> Windows only.
+> Windows platform only.
 >
 > Only three commonly used components (Word, Excel and PowerPoint) are currently supported.
 
@@ -35,6 +35,10 @@ This program will help you solve this problem.
 
 * Run again to stop background processes.
 
-* Deprecated for use with multi-tag plugins.
+* Deprecated for use with multi-tab plugins.
 
-* Test on Windows 10 + Office 2016. Whether this program supports older versions depends on your luck.
+### Compatibility
+
+* Windows 10 or higher.
+
+* Microsoft Office 2013 or higher.

@@ -10,7 +10,7 @@
 </p>
 </div>
 
-> 仅支持 Windows 。
+> 仅支持 Windows 平台。
 >
 > 当前仅适配了三个常用组件（Word、Excel 和 PowerPoint）。
 
@@ -24,12 +24,12 @@
 
 ### 使用方法
 
-1. [点我下载](https://github.com/kkocdko/mobp/releases)或者自行编译。
+1. 下载[已发布版本](https://github.com/kkocdko/mobp/releases)或者自行编译。
     * 如果下载失败，可以使用[备用链接](https://pan.baidu.com/s/1LSWH7VVOYew7Anr05ZAbFw)。
 
 2. 确保 Microsoft Office 关联了 `docx`，`csv` 和 `pptx` 这三个扩展名。
 
-3. 运行 `mobp.exe` 。
+3. 运行 `mobp.exe`。
 
 ### 注意事项
 
@@ -37,4 +37,8 @@
 
 * 不建议与多标签页插件同时使用。
 
-* 在 Windows 10 + Office 2016 上测试正常。至于是否支持更旧的版本完全看你的运气。
+### 兼容性
+
+* Windows 10 或更高版本。
+
+* Microsoft Office 2013 或更高版本。

@@ -1,24 +1,26 @@
-#include <windows.h>
 #include <stdio.h>
+#include <windows.h>
 
-BOOL HideWindowByTitle(const char *title)
+HWND QueryWindow(char *class_name, char *title_keyword)
 {
-    HWND hwnd = FindWindow(NULL, title);
-    if (hwnd)
+    char current_title[64];
+    HWND hwnd = NULL;
+    HWND hwnd_child_after = NULL;
+    while ((hwnd = FindWindowEx(NULL, hwnd_child_after, class_name, NULL)))
     {
-        SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
-        SetWindowPos(hwnd, HWND_BOTTOM, -1000, -1000, 0, 0, SWP_NOSENDCHANGING);
-        return TRUE;
+        GetWindowText(hwnd, current_title, 64);
+        if (strstr(current_title, title_keyword) != 0)
+        {
+            break;
+        }
+        hwnd_child_after = hwnd;
     }
-    else
-    {
-        return FALSE;
-    }
+    return hwnd;
 }
 
-BOOL CloseWindowByTitle(const char *title)
+BOOL CloseWindowByQuery(char *class_name, char *title_keyword)
 {
-    HWND hwnd = FindWindow(NULL, title);
+    HWND hwnd = QueryWindow(class_name, title_keyword);
     if (hwnd)
     {
         PostMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
@@ -30,56 +32,33 @@ BOOL CloseWindowByTitle(const char *title)
     }
 }
 
+BOOL HideWindowByQuery(char *class_name, char *title_keyword)
+{
+    HWND hwnd = QueryWindow(class_name, title_keyword);
+    if (hwnd)
+    {
+        SetWindowPos(hwnd, HWND_BOTTOM, -512, -512, 0, 0, SWP_NOSENDCHANGING);
+        SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
 int main(int argc, char *argv[])
 {
-    char *word_titles[] = {
-        "_mobp - Microsoft Word",
-        "_mobp.docx - Microsoft Word",
-        "_mobp - Word",
-        "_mobp.docx - Word",
-        "Microsoft Word - _mobp",
-        "Microsoft Word - _mobp.docx",
-        "Word - _mobp",
-        "Word - _mobp.docx"};
-    char *excel_titles[] = {
-        "_mobp - Microsoft Excel",
-        "_mobp.csv - Microsoft Excel",
-        "_mobp - Excel",
-        "_mobp.csv - Excel",
-        "Microsoft Excel - _mobp",
-        "Microsoft Excel - _mobp.csv",
-        "Excel - _mobp",
-        "Excel - _mobp.csv"};
-    char *powerpoint_titles[] = {
-        "_mobp - Microsoft PowerPoint",
-        "_mobp.pptx - Microsoft PowerPoint",
-        "_mobp - PowerPoint",
-        "_mobp.pptx - PowerPoint",
-        "Microsoft PowerPoint - _mobp",
-        "Microsoft PowerPoint - _mobp.pptx",
-        "PowerPoint - _mobp",
-        "PowerPoint - _mobp.pptx"};
-    int word_titles_len = sizeof(word_titles) / sizeof(char *);
-    int excel_titles_len = sizeof(excel_titles) / sizeof(char *);
-    int powerpoint_titles_len = sizeof(powerpoint_titles) / sizeof(char *);
-    BOOL word_closed = FALSE;
-    BOOL excel_closed = FALSE;
-    BOOL powerpoint_closed = FALSE;
-    for (int i = 0; i < word_titles_len && !word_closed; i++)
-    {
-        word_closed = CloseWindowByTitle(word_titles[i]);
-    }
-    for (int i = 0; i < excel_titles_len && !excel_closed; i++)
-    {
-        excel_closed = CloseWindowByTitle(excel_titles[i]);
-    }
-    for (int i = 0; i < powerpoint_titles_len && !powerpoint_closed; i++)
-    {
-        powerpoint_closed = CloseWindowByTitle(powerpoint_titles[i]);
-    }
+    char *title_keyword = "_mobp";
+    char *word_class_name = "OpusApp";
+    char *excel_class_name = "XLMAIN";
+    char *powerpoint_class_name = "PPTFrameClass";
+    BOOL word_closed = CloseWindowByQuery(word_class_name, title_keyword);
+    BOOL excel_closed = CloseWindowByQuery(excel_class_name, title_keyword);
+    BOOL powerpoint_closed = CloseWindowByQuery(powerpoint_class_name, title_keyword);
     if (word_closed || excel_closed || powerpoint_closed)
     {
-        printf("mobp is closed");
+        puts("mobp is closed");
     }
     else
     {
@@ -96,11 +75,11 @@ int main(int argc, char *argv[])
             "&"
             "cd.>_mobp.pptx"
             "&"
-            "start \"\" _mobp.docx"
+            "start /b cmd /c start _mobp.docx"
             "&"
-            "start \"\" _mobp.csv"
+            "start /b cmd /c start _mobp.csv"
             "&"
-            "start \"\" _mobp.pptx",
+            "start /b cmd /c start _mobp.pptx",
             NULL,
             SW_HIDE);
         BOOL word_hidden = FALSE;
@@ -108,22 +87,21 @@ int main(int argc, char *argv[])
         BOOL powerpoint_hidden = FALSE;
         while (!(word_hidden && excel_hidden && powerpoint_hidden))
         {
-            for (int i = 0; i < word_titles_len && !word_hidden; i++)
+            if (!word_hidden)
             {
-                word_hidden = HideWindowByTitle(word_titles[i]);
+                word_hidden = HideWindowByQuery(word_class_name, title_keyword);
             }
-            for (int i = 0; i < excel_titles_len && !excel_hidden; i++)
+            if (!excel_hidden)
             {
-                excel_hidden = HideWindowByTitle(excel_titles[i]);
+                excel_hidden = HideWindowByQuery(excel_class_name, title_keyword);
             }
-            for (int i = 0; i < powerpoint_titles_len && !powerpoint_hidden; i++)
+            if (!powerpoint_hidden)
             {
-                powerpoint_hidden = HideWindowByTitle(powerpoint_titles[i]);
+                powerpoint_hidden = HideWindowByQuery(powerpoint_class_name, title_keyword);
             }
             Sleep(5);
         }
-        // Refresh explorer?
-        printf("mobp is started");
+        puts("mobp is started");
     }
     if (argc == 1)
     {
