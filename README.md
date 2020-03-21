@@ -27,7 +27,7 @@ This program will help you solve this problem.
 1. Download [release](https://github.com/kkocdko/mobp/releases) or compile yourself.
     * If the download fails, you can use [alternative link](https://pan.baidu.com/s/1LSWH7VVOYew7Anr05ZAbFw).
 
-2. Make sure Microsoft Office is associated with the `docx` , `csv` and `pptx` extension.
+2. Make sure Microsoft Office is associated with the `docx` , `xlk` and `pptx` extension.
 
 3. Run `mobp.exe`.
 

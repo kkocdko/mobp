@@ -71,13 +71,13 @@ int main(int argc, char *argv[])
             "&"
             "cd.>_mobp.docx"
             "&"
-            "cd.>_mobp.csv"
+            "cd.>_mobp.xlk"
             "&"
             "cd.>_mobp.pptx"
             "&"
             "start /b cmd /c start _mobp.docx"
             "&"
-            "start /b cmd /c start _mobp.csv"
+            "start /b cmd /c start _mobp.xlk"
             "&"
             "start /b cmd /c start _mobp.pptx",
             NULL,

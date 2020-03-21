@@ -27,7 +27,7 @@
 1. 下载[已发布版本](https://github.com/kkocdko/mobp/releases)或者自行编译。
     * 如果下载失败，可以使用[备用链接](https://pan.baidu.com/s/1LSWH7VVOYew7Anr05ZAbFw)。
 
-2. 确保 Microsoft Office 关联了 `docx`，`csv` 和 `pptx` 这三个扩展名。
+2. 确保 Microsoft Office 关联了 `docx`，`xlk` 和 `pptx` 这三个扩展名。
 
 3. 运行 `mobp.exe`。
 
