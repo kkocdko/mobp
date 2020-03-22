@@ -75,11 +75,11 @@ int main(int argc, char *argv[])
             "&"
             "cd.>_mobp.pptx"
             "&"
-            "start /b cmd /c start _mobp.docx"
+            "start \"\" _mobp.docx"
             "&"
-            "start /b cmd /c start _mobp.xlk"
+            "start \"\" _mobp.xlk"
             "&"
-            "start /b cmd /c start _mobp.pptx",
+            "start \"\" _mobp.pptx",
             NULL,
             SW_HIDE);
         BOOL word_hidden = FALSE;
