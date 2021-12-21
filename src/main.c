@@ -32,12 +32,28 @@ BOOL CloseWindowByQuery(char *class_name, char *title_keyword)
     }
 }
 
-BOOL HideWindowByQuery(char *class_name, char *title_keyword)
+enum HIDE_WINDOW_BY_QUERY_TYPE
+{
+    HWBQ_WINWORD = 1,
+    HWBQ_EXCEL,
+    HWBQ_POWERPNT
+};
+
+BOOL HideWindowByQuery(char type, char *class_name, char *title_keyword)
 {
     HWND hwnd = QueryWindow(class_name, title_keyword);
     if (hwnd)
     {
-        SetWindowPos(hwnd, HWND_BOTTOM, -512, -512, 0, 0, SWP_NOSENDCHANGING);
+        switch (type)
+        {
+        case HWBQ_WINWORD:
+            SetWindowPos(hwnd, HWND_BOTTOM, -512, -512, 0, 0, SWP_NOSENDCHANGING);
+            break;
+        case HWBQ_EXCEL:
+        case HWBQ_POWERPNT:
+            SetWindowPos(hwnd, HWND_BOTTOM, -801, -601, 800, 600, SWP_NOSENDCHANGING);
+            break;
+        }
         SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
         return TRUE;
     }
@@ -89,15 +105,15 @@ int main(int argc, char *argv[])
         {
             if (!word_hidden)
             {
-                word_hidden = HideWindowByQuery(word_class_name, title_keyword);
+                word_hidden = HideWindowByQuery(HWBQ_WINWORD, word_class_name, title_keyword);
             }
             if (!excel_hidden)
             {
-                excel_hidden = HideWindowByQuery(excel_class_name, title_keyword);
+                excel_hidden = HideWindowByQuery(HWBQ_EXCEL, excel_class_name, title_keyword);
             }
             if (!powerpoint_hidden)
             {
-                powerpoint_hidden = HideWindowByQuery(powerpoint_class_name, title_keyword);
+                powerpoint_hidden = HideWindowByQuery(HWBQ_POWERPNT, powerpoint_class_name, title_keyword);
             }
             Sleep(5);
         }
