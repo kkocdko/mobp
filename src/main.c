@@ -37,7 +37,7 @@ BOOL HideWindowByQuery(char *class_name, char *title_keyword)
     HWND hwnd = QueryWindow(class_name, title_keyword);
     if (hwnd)
     {
-        ShowWindow(hwnd, SW_MINIMIZE); 
+        SetWindowPos(hwnd, HWND_BOTTOM, -512, -512, 0, 0, SWP_NOSENDCHANGING);
         SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
         return TRUE;
     }
