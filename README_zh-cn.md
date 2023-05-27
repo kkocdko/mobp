@@ -1,14 +1,11 @@
-<div align="center">
-<h1>mobp</h1>
-<p>微软办公套件后台进程</p>
-<img src="https://flat.badgen.net/github/release/kkocdko/mobp?color=4caf50">
-<img src="https://flat.badgen.net/github/license/kkocdko/mobp?color=4caf50">
-<p>
-<a href="README.md">English</a>
-•
-<b>简体中文</b>
-</p>
-</div>
+# mobp
+
+[![Release](https://img.shields.io/github/v/release/kkocdko/mobp?style=flat&color=293)](https://github.com/kkocdko/mobp/releases)
+[![License](https://img.shields.io/github/license/kkocdko/mobp?style=flat&color=293)](LICENSE)
+
+[English](README.md) • **简体中文**
+
+微软办公套件后台进程。
 
 > 仅支持Windows平台。
 >
@@ -25,7 +22,7 @@
 ### 使用方法
 
 1. 下载[已发布版本](https://github.com/kkocdko/mobp/releases)或者自行编译。
-    * 如果下载失败，可以使用[备用链接](https://pan.baidu.com/s/1LSWH7VVOYew7Anr05ZAbFw)。
+    * 如果下载失败，可以使用[备用链接](https://lanzoui.com/b0108u0pa)。
 
 2. 确保Microsoft Office关联了`docx`，`xlk`和`pptx`这三个扩展名。
 
@@ -36,6 +33,8 @@
 * 再次运行即可停止后台进程。
 
 * 不建议与多标签页插件同时使用。
+
+* 如果遇到 [窗口位置和大小异常](https://github.com/kkocdko/mobp/issues/1) 的情况，请注意：1. 尽量使用mobp自带的关闭功能。2. 先关闭mobp，手动打开Excel、Word 和 PowerPoint，将窗口最大化后关闭，然后再启动mobp。
 
 ### 兼容性
 

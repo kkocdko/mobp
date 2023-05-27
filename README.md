@@ -1,14 +1,11 @@
-<div align="center">
-<h1>mobp</h1>
-<p>Microsoft Office Background Process.</p>
-<img src="https://flat.badgen.net/github/release/kkocdko/mobp?color=4caf50">
-<img src="https://flat.badgen.net/github/license/kkocdko/mobp?color=4caf50">
-<p>
-<b>English</b>
-•
-<a href="README_zh-cn.md">简体中文</a>
-</p>
-</div>
+# mobp
+
+[![Release](https://img.shields.io/github/v/release/kkocdko/mobp?style=flat&color=293)](https://github.com/kkocdko/mobp/releases)
+[![License](https://img.shields.io/github/license/kkocdko/mobp?style=flat&color=293)](LICENSE)
+
+**English** • [简体中文](README_zh-cn.md)
+
+Microsoft Office Background Process.
 
 > Windows platform only.
 >
@@ -25,7 +22,7 @@ This program will help you solve this problem.
 ### Usage
 
 1. Download [release](https://github.com/kkocdko/mobp/releases) or compile yourself.
-    * If the download fails, you can use [alternative link](https://pan.baidu.com/s/1LSWH7VVOYew7Anr05ZAbFw).
+    * If the download fails, you can use [alternative link](https://lanzoui.com/b0108u0pa).
 
 2. Make sure Microsoft Office is associated with the `docx` , `xlk` and `pptx` extension.
 
@@ -36,6 +33,8 @@ This program will help you solve this problem.
 * Run again to stop background processes.
 
 * Deprecated for use with multi-tab plugins.
+
+* If the [window position and size were abnormal](https://github.com/kkocdko/mobp/issues/1) on your system, please: 1. Use mobp's built-in "close" function; 2. First close mobp, open Excel, Word and PowerPoint manually, maximize and then close the window, finally reopen mobp.
 
 ### Compatibility
 
